@@ -1,5 +1,6 @@
 <?php
 class MasterModel{
+    //Lấy thông tin từ $table theo $Id
     public static function get_By_Id ($table, $id){
         $db= Database::connect();
         $sql= "SELECT * FROM $table WHERE id=$id"; 
@@ -10,7 +11,7 @@ class MasterModel{
         return $result;
     }
 
-
+    //Xóa thông tin từ $table
     public static function delete ($table, $column, $value){
         $db= Database::connect();
         $sql= "DELETE FROM $table WHERE $column = :value";
@@ -19,7 +20,7 @@ class MasterModel{
         $stmt->execute();
         $stmt->closeCursor();
     }
-    
+    //Lấy toàn bộ thông tin từ $table
     public static function get_all_from($table){
         $db=Database::connect();
         $sql="SELECT * FROM $table";
@@ -29,6 +30,7 @@ class MasterModel{
         $stmt->closeCursor();
         return $result;
     }
+    //Lấy thông tin của $table từ vị trí $start tới $start+$limit
     public static function get_from($table,$start,$limit){
         $db=Database::connect();
         $sql="SELECT * FROM $table LIMIT :start, :limit";
